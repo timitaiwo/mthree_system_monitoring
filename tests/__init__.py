@@ -1,6 +1,12 @@
+import time
+delay=0.0001
 
 def memory_stress_test():
-    print("Does memory stress test")
+    memory_bank = []
+    print("Starting memory stress test\n")
+    while True:
+        memory_bank.append("dfdsfsdfdsfdsf"*525)
+        time.sleep(delay)
 
 def disk_stress_test():
     print("Does disk stress test")

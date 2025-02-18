@@ -1,4 +1,6 @@
 from tests import *
+import signal
+import sys
 
 prompt = """
 1. Press 1 for Memory Stress Testing
@@ -10,7 +12,7 @@ prompt = """
 Press Ctrl/Super + C to cancel
 """
 
-if __name__=="__main__":
+def main():
     
     print("\nWelcome to stress test. Select the below option to stress test your device", end="")
 
@@ -48,5 +50,21 @@ if __name__=="__main__":
         if next_round=="y" or next_round=="yes":
             continue
 
+        if next_round == "n" or next_round=="no":
+            print("n/no detected. Terminating program")
+            break
+
         print("\ny/yes not detected. Program terminating")
         break
+
+
+def sig_int(sig_number, framei):
+    print("\nProgram Terminated")
+    sys.exit(0)
+
+if __name__=="__main__":
+    signal.signal(signal.SIGINT, sig_int)
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nProgram Terminated")
